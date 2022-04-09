@@ -7,6 +7,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.udemyjava.demo.entities.pk.OrderItemPK;
 
 @Entity
@@ -16,7 +17,7 @@ public class OrderItem implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@EmbeddedId
-	private OrderItemPK id;
+	private OrderItemPK id = new OrderItemPK(); //Sempre que se cria uma classe auxiliar como id composto é necessário inicializá-la.
 	
 	private Integer quantity;
 	private Double price;
@@ -35,6 +36,7 @@ public class OrderItem implements Serializable{
 		return quantity;
 	}
 
+	@JsonIgnore //Em JavaEE, os GETs fazem-se sempre com recurso ao método get instanciado na classe
 	public Order getOrder() {
 		return id.getOrder();
 	}
