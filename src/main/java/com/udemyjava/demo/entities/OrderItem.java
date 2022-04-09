@@ -65,6 +65,11 @@ public class OrderItem implements Serializable{
 		this.price = price;
 	}
 
+	//Mais uma vez, é necessário ter o "get" no método em JavaEE para depois mostrar em JSON
+	public Double getSubTotal() {
+		return price * quantity;
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
